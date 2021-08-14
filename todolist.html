@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My ToDoList</title>
+    <link href="mian.css" rel="stylesheet" />
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+  </head>
+  <body>
+    <div id="app"> 
+        <div>
+          <h1>
+            This is My ToDoList
+          </h1>
+        </div>
+      <head>
+          <section>
+            <div>              
+                <div id='Listsubmit'>
+                  <label for="title">ToDoList:</label>
+                  <input type="text" id="title" placeholder="添加待办事项" />  
+                </div>
+                <div id='timesubmit'>
+                  <label for="ddl">deadline：</label>
+                  <input id="ddl" type="datetime-local"/>
+                  <button id="submit" v-on:click="todosubmit">创建待办</button>
+                </div>
+            </div>
+          </section>
+      </head>
+      <section>
+            <h2>正在进行 <span id="todocount">{{todolist.length}}</span></h2>
+            <ol id="todoList" class="demo-box">
+              <li v-for="(List,index) in todolist">
+                <input type="checkbox" v-on:click="todochangedone">
+                <p id='Listdisplay1'>{{List}}</p>
+                <p id ='Listdisplay2'>{{todotime[index]}}</p>
+                <a href="javascript:void(0)" v-on:click="deletetodo">-</a> 
+            </li>
+            </ol>
+            <h2>已经完成 <span id="donecount">{{donelist.length}}</span></h2>
+            <ul id="doneList">
+              <li v-for="(List,index) in donelist">
+                <input type="checkbox" v-on:click="donechangetodo">
+                <p id='Listdisplay1'>{{List}}</p>
+                <p id ='Listdisplay2'>{{donetime[index]}}</p>
+                <a href="javascript:void(0)" v-on:click="deletedone">-</a> 
+              </li>
+            </ul>
+      </section>
+      <div id='nosing' v-show="todolist.length==0&&donelist.length!==0">已完成所有任务</div>
+      <footer>Copyright @hongfang <a href="#" v-on:click="clearall">clear all</a></footer>
+    </div>
+      <script src="mian.js"></script>
+  </body>
